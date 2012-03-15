@@ -12,16 +12,27 @@
     
     body {
       background:grey;
+      min-width: 1006px;
     }
 	
 		div#header {
+      border-bottom: 1px solid #133783;
 			background: #3B5998;
-      height:50px;
-      margin-right:201px;
+      position:relative;
+      height:37px;
+      z-index:200;
+      min-width: 1006px;
 		}
     
+    div#header h1 {
+      color:white;
+      font-size:2em;
+      margin-left:10px;
+      line-height:38px;
+    }
+    
     div#canvas-outer {
-      margin-right:201px;
+      margin-right:224px;
     }
     
     div#canvas-wrapper {
@@ -51,15 +62,23 @@
       display:block;
     }
 		
-	  div#right-col {
-      border-left:1px solid #ddd;
-      overflow-y: auto;
-      background:white;
-      width:200px;
+    div#right-col-wrapper{
       position:absolute;
+      margin-left:-1px;
+      overflow-y: auto;
+      width:224px;
       height:100%;
       right:0px;
       top:0px;
+      z-index:1;
+    }
+    
+	  div#right-col {
+      padding:10px;
+      border-left:1px solid #B3B3B3;
+      margin-top:38px;
+      background:white;    
+      z-index:1;  
     }
 	
 	form input, form label, form select {
@@ -86,10 +105,11 @@
 	<div id="header">
 		<h1>Facebook Frame</h1>
 	</div>
+  
 	<div id="canvas-outer">
   	<div id="canvas-wrapper">
       <!-- The iframe into which the app is loaded -->
-  		<iframe id="canvas-frame" width="100%" height="100%" frameborder=0></iframe>
+  		<iframe id="canvas-frame" width="100%" height="100%" frameborder="0"></iframe>
   	</div>
   </div>
   
@@ -98,72 +118,73 @@
     <input type="hidden" id="signed_request" name="signed_request" />
   </form>
 	
-	<div id="right-col">
+  <div id="right-col-wrapper">
+  	<div id="right-col">
 		
-		<select id="embed_mode">
-			<option selected value="canvas_fluid">Canvas Fluid Width</option>
-      <option value="canvas_fixed">Canvas 780px</option>
-			<option value="page_narrow">Page Tab 520px</option>
-			<option value="page_wide">Page Tab 850px</option>
-		</select>
+  		<select id="embed_mode">
+  			<option selected value="canvas_fluid">Canvas Fluid Width</option>
+        <option value="canvas_fixed">Canvas 780px</option>
+  			<option value="page_narrow">Page Tab 520px</option>
+  			<option value="page_wide">Page Tab 850px</option>
+  		</select>
 		
-		<form id="config-form">
+  		<form id="config-form">
 			
-			<h2>App Settings</h2>
+  			<h2>App Settings</h2>
 			
-			<label for="config_app_secret">App Secret</label>
-      <input type="text" id="config_app_secret" value="34534534534" placeholder="App Secret as shown in your app's settings"/>
+  			<label for="config_app_secret">App Secret</label>
+        <input type="text" id="config_app_secret" value="5c9a4ce3636909844e3b68668e9d5d9b" placeholder="App Secret as shown in your app's settings"/>
 			
-			<label for="config_server_url">Server URL</label>
-			<input type="text" id="config_server_url" value="http://localhost:3000/"placeholder="The base URL to which POST requests should be sent"/>
+  			<label for="config_server_url">Server URL</label>
+  			<input type="text" id="config_server_url" value="http://localhost:3000/"placeholder="The base URL to which POST requests should be sent"/>
 			
-			<label for="config_canvas_path">Canvas Path</label>
-			<input type="text" id="config_canvas_path_prefix" value="https://apps.facebook.com/yournamespace/" />
-			<input type="text" id="config_canvas_path" value="debug_signed_request" placeholder="" />
+  			<label for="config_canvas_path">Canvas Path</label>
+  			<input type="text" id="config_canvas_path_prefix" value="https://apps.facebook.com/yournamespace/" />
+  			<input type="text" id="config_canvas_path" value="debug_signed_request" placeholder="" />
       
-      <h2>User Settings</h2>
+        <h2>User Settings</h2>
 			
-			<label for="config_user_id">User ID</label>
-			<input type="text" id="config_user_id" value="605665581" placeholder="The User ID the request is coming from. Leave blank to simulate un-auth'd user"/>
+  			<label for="config_user_id">User ID</label>
+  			<input type="text" id="config_user_id" value="605665581" placeholder="The User ID the request is coming from. Leave blank to simulate un-auth'd user"/>
 			
-			<label for="config_user_id">User Access Token</label>
-			<input type="text" id="config_user_token" value="" placeholder="Optional. An access token to be used in requests to the Graph API"/>
+  			<label for="config_user_id">User Access Token</label>
+  			<input type="text" id="config_user_token" value="" placeholder="Optional. An access token to be used in requests to the Graph API"/>
 
-      <label for="config_user_country">User Country</label>
-	    <select id="config_user_country">
-		    <option value="af">af</option><option value="ax">ax</option><option value="al">al</option><option value="dz">dz</option><option value="ad">ad</option><option value="ao">ao</option><option value="ai">ai</option><option value="aq">aq</option><option value="ag">ag</option><option value="ar">ar</option><option value="am">am</option><option value="aw">aw</option><option value="au">au</option><option value="at">at</option><option value="az">az</option><option value="bs">bs</option><option value="bh">bh</option><option value="bd">bd</option><option value="bb">bb</option><option value="by">by</option><option value="be">be</option><option value="bz">bz</option><option value="bj">bj</option><option value="bm">bm</option><option value="bt">bt</option><option value="bo">bo</option><option value="bq">bq</option><option value="ba">ba</option><option value="bw">bw</option><option value="bv">bv</option><option value="br">br</option><option value="io">io</option><option value="bn">bn</option><option value="bg">bg</option><option value="bf">bf</option><option value="bi">bi</option><option value="kh">kh</option><option value="cm">cm</option><option value="ca">ca</option><option value="cv">cv</option><option value="ky">ky</option><option value="cf">cf</option><option value="td">td</option><option value="cl">cl</option><option value="cn">cn</option><option value="cx">cx</option><option value="cc">cc</option><option value="co">co</option><option value="km">km</option><option value="cg">cg</option><option value="cd">cd</option><option value="ck">ck</option><option value="cr">cr</option><option value="ci">ci</option><option value="hr">hr</option><option value="cu">cu</option><option value="cw">cw</option><option value="cy">cy</option><option value="cz">cz</option><option value="dk">dk</option><option value="dk">dk</option><option value="dm">dm</option><option value="do">do</option><option value="ec">ec</option><option value="eg">eg</option><option value="sv">sv</option><option value="gq">gq</option><option value="er">er</option><option value="ee">ee</option><option value="et">et</option><option value="fk">fk</option><option value="fo">fo</option><option value="fj">fj</option><option value="fi">fi</option><option value="fr">fr</option><option value="gf">gf</option><option value="pf">pf</option><option value="tf">tf</option><option value="ga">ga</option><option value="gm">gm</option><option value="ge">ge</option><option value="dm">dm</option><option value="gh">gh</option><option value="gi">gi</option><option value="gr">gr</option><option value="gl">gl</option><option value="gd">gd</option><option value="gp">gp</option><option value="gu">gu</option><option value="gt">gt</option><option value="gg">gg</option><option value="gn">gn</option><option value="gw">gw</option><option value="gy">gy</option><option value="ht">ht</option><option value="hm">hm</option><option value="va">va</option><option value="hn">hn</option><option value="hk">hk</option><option value="hu">hu</option><option value="is">is</option><option value="in">in</option><option value="id">id</option><option value="ir">ir</option><option value="iq">iq</option><option value="ie">ie</option><option value="im">im</option><option value="il">il</option><option value="it">it</option><option value="jm">jm</option><option value="jp">jp</option><option value="je">je</option><option value="jo">jo</option><option value="kz">kz</option><option value="ke">ke</option><option value="ki">ki</option><option value="kp">kp</option><option value="kr">kr</option><option value="kw">kw</option><option value="kg">kg</option><option value="la">la</option><option value="lv">lv</option><option value="lb">lb</option><option value="ls">ls</option><option value="lr">lr</option><option value="ly">ly</option><option value="li">li</option><option value="lt">lt</option><option value="lu">lu</option><option value="mo">mo</option><option value="mk">mk</option><option value="mg">mg</option><option value="mw">mw</option><option value="my">my</option><option value="mv">mv</option><option value="ml">ml</option><option value="mt">mt</option><option value="mh">mh</option><option value="mq">mq</option><option value="mr">mr</option><option value="mu">mu</option><option value="yt">yt</option><option value="mx">mx</option><option value="fm">fm</option><option value="md">md</option><option value="mc">mc</option><option value="mn">mn</option><option value="me">me</option><option value="ms">ms</option><option value="ma">ma</option><option value="mz">mz</option><option value="mm">mm</option><option value="na">na</option><option value="nr">nr</option><option value="np">np</option><option value="nl">nl</option><option value="nc">nc</option><option value="nz">nz</option><option value="ni">ni</option><option value="ne">ne</option><option value="ng">ng</option><option value="nu">nu</option><option value="nf">nf</option><option value="mp">mp</option><option value="no">no</option><option value="om">om</option><option value="pk">pk</option><option value="pw">pw</option><option value="ps">ps</option><option value="pa">pa</option><option value="pg">pg</option><option value="py">py</option><option value="pe">pe</option><option value="ph">ph</option><option value="pn">pn</option><option value="pl">pl</option><option value="pt">pt</option><option value="pr">pr</option><option value="qa">qa</option><option value="re">re</option><option value="ro">ro</option><option value="ru">ru</option><option value="rw">rw</option><option value="bl">bl</option><option value="sh">sh</option><option value="kn">kn</option><option value="lc">lc</option><option value="mf">mf</option><option value="pm">pm</option><option value="vc">vc</option><option value="ws">ws</option><option value="sm">sm</option><option value="st">st</option><option value="sa">sa</option><option value="sn">sn</option><option value="rs">rs</option><option value="sc">sc</option><option value="sl">sl</option><option value="sg">sg</option><option value="sx">sx</option><option value="sk">sk</option><option value="si">si</option><option value="sb">sb</option><option value="so">so</option><option value="za">za</option><option value="gs">gs</option><option value="ss">ss</option><option value="es">es</option><option value="lk">lk</option><option value="sd">sd</option><option value="sr">sr</option><option value="sj">sj</option><option value="sz">sz</option><option value="se">se</option><option value="ch">ch</option><option value="sy">sy</option><option value="tw">tw</option><option value="tj">tj</option><option value="tz">tz</option><option value="th">th</option><option value="tl">tl</option><option value="tg">tg</option><option value="tk">tk</option><option value="to">to</option><option value="tt">tt</option><option value="tn">tn</option><option value="tr">tr</option><option value="tm">tm</option><option value="tc">tc</option><option value="tv">tv</option><option value="ug">ug</option><option value="ua">ua</option><option value="ae">ae</option><option value="gb">gb</option><option selected value="us">us</option><option value="um">um</option><option value="uy">uy</option><option value="uz">uz</option><option value="uv">uv</option><option value="ve">ve</option><option value="vn">vn</option><option value="vg">vg</option><option value="vi">vi</option><option value="wf">wf</option><option value="eh">eh</option><option value="ye">ye</option><option value="zm">zm</option><option value="zw">zw</option>		 
-	    </select>
+        <label for="config_user_country">User Country</label>
+  	    <select id="config_user_country">
+  		    <option value="af">af</option><option value="ax">ax</option><option value="al">al</option><option value="dz">dz</option><option value="ad">ad</option><option value="ao">ao</option><option value="ai">ai</option><option value="aq">aq</option><option value="ag">ag</option><option value="ar">ar</option><option value="am">am</option><option value="aw">aw</option><option value="au">au</option><option value="at">at</option><option value="az">az</option><option value="bs">bs</option><option value="bh">bh</option><option value="bd">bd</option><option value="bb">bb</option><option value="by">by</option><option value="be">be</option><option value="bz">bz</option><option value="bj">bj</option><option value="bm">bm</option><option value="bt">bt</option><option value="bo">bo</option><option value="bq">bq</option><option value="ba">ba</option><option value="bw">bw</option><option value="bv">bv</option><option value="br">br</option><option value="io">io</option><option value="bn">bn</option><option value="bg">bg</option><option value="bf">bf</option><option value="bi">bi</option><option value="kh">kh</option><option value="cm">cm</option><option value="ca">ca</option><option value="cv">cv</option><option value="ky">ky</option><option value="cf">cf</option><option value="td">td</option><option value="cl">cl</option><option value="cn">cn</option><option value="cx">cx</option><option value="cc">cc</option><option value="co">co</option><option value="km">km</option><option value="cg">cg</option><option value="cd">cd</option><option value="ck">ck</option><option value="cr">cr</option><option value="ci">ci</option><option value="hr">hr</option><option value="cu">cu</option><option value="cw">cw</option><option value="cy">cy</option><option value="cz">cz</option><option value="dk">dk</option><option value="dk">dk</option><option value="dm">dm</option><option value="do">do</option><option value="ec">ec</option><option value="eg">eg</option><option value="sv">sv</option><option value="gq">gq</option><option value="er">er</option><option value="ee">ee</option><option value="et">et</option><option value="fk">fk</option><option value="fo">fo</option><option value="fj">fj</option><option value="fi">fi</option><option value="fr">fr</option><option value="gf">gf</option><option value="pf">pf</option><option value="tf">tf</option><option value="ga">ga</option><option value="gm">gm</option><option value="ge">ge</option><option value="dm">dm</option><option value="gh">gh</option><option value="gi">gi</option><option value="gr">gr</option><option value="gl">gl</option><option value="gd">gd</option><option value="gp">gp</option><option value="gu">gu</option><option value="gt">gt</option><option value="gg">gg</option><option value="gn">gn</option><option value="gw">gw</option><option value="gy">gy</option><option value="ht">ht</option><option value="hm">hm</option><option value="va">va</option><option value="hn">hn</option><option value="hk">hk</option><option value="hu">hu</option><option value="is">is</option><option value="in">in</option><option value="id">id</option><option value="ir">ir</option><option value="iq">iq</option><option value="ie">ie</option><option value="im">im</option><option value="il">il</option><option value="it">it</option><option value="jm">jm</option><option value="jp">jp</option><option value="je">je</option><option value="jo">jo</option><option value="kz">kz</option><option value="ke">ke</option><option value="ki">ki</option><option value="kp">kp</option><option value="kr">kr</option><option value="kw">kw</option><option value="kg">kg</option><option value="la">la</option><option value="lv">lv</option><option value="lb">lb</option><option value="ls">ls</option><option value="lr">lr</option><option value="ly">ly</option><option value="li">li</option><option value="lt">lt</option><option value="lu">lu</option><option value="mo">mo</option><option value="mk">mk</option><option value="mg">mg</option><option value="mw">mw</option><option value="my">my</option><option value="mv">mv</option><option value="ml">ml</option><option value="mt">mt</option><option value="mh">mh</option><option value="mq">mq</option><option value="mr">mr</option><option value="mu">mu</option><option value="yt">yt</option><option value="mx">mx</option><option value="fm">fm</option><option value="md">md</option><option value="mc">mc</option><option value="mn">mn</option><option value="me">me</option><option value="ms">ms</option><option value="ma">ma</option><option value="mz">mz</option><option value="mm">mm</option><option value="na">na</option><option value="nr">nr</option><option value="np">np</option><option value="nl">nl</option><option value="nc">nc</option><option value="nz">nz</option><option value="ni">ni</option><option value="ne">ne</option><option value="ng">ng</option><option value="nu">nu</option><option value="nf">nf</option><option value="mp">mp</option><option value="no">no</option><option value="om">om</option><option value="pk">pk</option><option value="pw">pw</option><option value="ps">ps</option><option value="pa">pa</option><option value="pg">pg</option><option value="py">py</option><option value="pe">pe</option><option value="ph">ph</option><option value="pn">pn</option><option value="pl">pl</option><option value="pt">pt</option><option value="pr">pr</option><option value="qa">qa</option><option value="re">re</option><option value="ro">ro</option><option value="ru">ru</option><option value="rw">rw</option><option value="bl">bl</option><option value="sh">sh</option><option value="kn">kn</option><option value="lc">lc</option><option value="mf">mf</option><option value="pm">pm</option><option value="vc">vc</option><option value="ws">ws</option><option value="sm">sm</option><option value="st">st</option><option value="sa">sa</option><option value="sn">sn</option><option value="rs">rs</option><option value="sc">sc</option><option value="sl">sl</option><option value="sg">sg</option><option value="sx">sx</option><option value="sk">sk</option><option value="si">si</option><option value="sb">sb</option><option value="so">so</option><option value="za">za</option><option value="gs">gs</option><option value="ss">ss</option><option value="es">es</option><option value="lk">lk</option><option value="sd">sd</option><option value="sr">sr</option><option value="sj">sj</option><option value="sz">sz</option><option value="se">se</option><option value="ch">ch</option><option value="sy">sy</option><option value="tw">tw</option><option value="tj">tj</option><option value="tz">tz</option><option value="th">th</option><option value="tl">tl</option><option value="tg">tg</option><option value="tk">tk</option><option value="to">to</option><option value="tt">tt</option><option value="tn">tn</option><option value="tr">tr</option><option value="tm">tm</option><option value="tc">tc</option><option value="tv">tv</option><option value="ug">ug</option><option value="ua">ua</option><option value="ae">ae</option><option value="gb">gb</option><option selected value="us">us</option><option value="um">um</option><option value="uy">uy</option><option value="uz">uz</option><option value="uv">uv</option><option value="ve">ve</option><option value="vn">vn</option><option value="vg">vg</option><option value="vi">vi</option><option value="wf">wf</option><option value="eh">eh</option><option value="ye">ye</option><option value="zm">zm</option><option value="zw">zw</option>		 
+  	    </select>
 	  
-	    <label for="config_user_locale">User Locale</label>
-      <select id="config_user_locale">
-		    <option value="af_ZA">af_ZA</option><option value="ar_AR">ar_AR</option><option value="az_AZ">az_AZ</option><option value="be_BY">be_BY</option><option value="bg_BG">bg_BG</option><option value="bn_IN">bn_IN</option><option value="bs_BA">bs_BA</option><option value="ca_ES">ca_ES</option><option value="cs_CZ">cs_CZ</option><option value="cy_GB">cy_GB</option><option value="da_DK">da_DK</option><option value="de_DE">de_DE</option><option value="el_GR">el_GR</option><option value="en_GB">en_GB</option><option value="en_PI">en_PI</option><option value="en_UD">en_UD</option><option selected value="en_US">en_US</option><option value="eo_EO">eo_EO</option><option value="es_ES">es_ES</option><option value="es_LA">es_LA</option><option value="et_EE">et_EE</option><option value="eu_ES">eu_ES</option><option value="fa_IR">fa_IR</option><option value="fb_LT">fb_LT</option><option value="fi_FI">fi_FI</option><option value="fo_FO">fo_FO</option><option value="fr_CA">fr_CA</option><option value="fr_FR">fr_FR</option><option value="fy_NL">fy_NL</option><option value="ga_IE">ga_IE</option><option value="gl_ES">gl_ES</option><option value="he_IL">he_IL</option><option value="hi_IN">hi_IN</option><option value="hr_HR">hr_HR</option><option value="hu_HU">hu_HU</option><option value="hy_AM">hy_AM</option><option value="id_ID">id_ID</option><option value="is_IS">is_IS</option><option value="it_IT">it_IT</option><option value="ja_JP">ja_JP</option><option value="ka_GE">ka_GE</option><option value="km_KH">km_KH</option><option value="ko_KR">ko_KR</option><option value="ko_KR">ko_KR</option><option value="la_VA">la_VA</option><option value="lt_LT">lt_LT</option><option value="lv_LV">lv_LV</option><option value="mk_MK">mk_MK</option><option value="ml_IN">ml_IN</option><option value="ms_MY">ms_MY</option><option value="nb_NO">nb_NO</option><option value="ne_NP">ne_NP</option><option value="nl_NL">nl_NL</option><option value="nn_NO">nn_NO</option><option value="pa_IN">pa_IN</option><option value="pl_PL">pl_PL</option><option value="ps_AF">ps_AF</option><option value="pt_BR">pt_BR</option><option value="pt_PT">pt_PT</option><option value="ro_RO">ro_RO</option><option value="ru_RU">ru_RU</option><option value="sk_SK">sk_SK</option><option value="sl_SI">sl_SI</option><option value="sq_AL">sq_AL</option><option value="sr_RS">sr_RS</option><option value="sv_SE">sv_SE</option><option value="sw_KE">sw_KE</option><option value="ta_IN">ta_IN</option><option value="th_TH">th_TH</option><option value="tl_PH">tl_PH</option><option value="tr_TR">tr_TR</option><option value="uk_UA">uk_UA</option><option value="vi_VN">vi_VN</option><option value="zh_CN">zh_CN</option><option value="zh_HK">zh_HK</option><option value="zh_TW">zh_TW</option>
-      </select>
+  	    <label for="config_user_locale">User Locale</label>
+        <select id="config_user_locale">
+  		    <option value="af_ZA">af_ZA</option><option value="ar_AR">ar_AR</option><option value="az_AZ">az_AZ</option><option value="be_BY">be_BY</option><option value="bg_BG">bg_BG</option><option value="bn_IN">bn_IN</option><option value="bs_BA">bs_BA</option><option value="ca_ES">ca_ES</option><option value="cs_CZ">cs_CZ</option><option value="cy_GB">cy_GB</option><option value="da_DK">da_DK</option><option value="de_DE">de_DE</option><option value="el_GR">el_GR</option><option value="en_GB">en_GB</option><option value="en_PI">en_PI</option><option value="en_UD">en_UD</option><option selected value="en_US">en_US</option><option value="eo_EO">eo_EO</option><option value="es_ES">es_ES</option><option value="es_LA">es_LA</option><option value="et_EE">et_EE</option><option value="eu_ES">eu_ES</option><option value="fa_IR">fa_IR</option><option value="fb_LT">fb_LT</option><option value="fi_FI">fi_FI</option><option value="fo_FO">fo_FO</option><option value="fr_CA">fr_CA</option><option value="fr_FR">fr_FR</option><option value="fy_NL">fy_NL</option><option value="ga_IE">ga_IE</option><option value="gl_ES">gl_ES</option><option value="he_IL">he_IL</option><option value="hi_IN">hi_IN</option><option value="hr_HR">hr_HR</option><option value="hu_HU">hu_HU</option><option value="hy_AM">hy_AM</option><option value="id_ID">id_ID</option><option value="is_IS">is_IS</option><option value="it_IT">it_IT</option><option value="ja_JP">ja_JP</option><option value="ka_GE">ka_GE</option><option value="km_KH">km_KH</option><option value="ko_KR">ko_KR</option><option value="ko_KR">ko_KR</option><option value="la_VA">la_VA</option><option value="lt_LT">lt_LT</option><option value="lv_LV">lv_LV</option><option value="mk_MK">mk_MK</option><option value="ml_IN">ml_IN</option><option value="ms_MY">ms_MY</option><option value="nb_NO">nb_NO</option><option value="ne_NP">ne_NP</option><option value="nl_NL">nl_NL</option><option value="nn_NO">nn_NO</option><option value="pa_IN">pa_IN</option><option value="pl_PL">pl_PL</option><option value="ps_AF">ps_AF</option><option value="pt_BR">pt_BR</option><option value="pt_PT">pt_PT</option><option value="ro_RO">ro_RO</option><option value="ru_RU">ru_RU</option><option value="sk_SK">sk_SK</option><option value="sl_SI">sl_SI</option><option value="sq_AL">sq_AL</option><option value="sr_RS">sr_RS</option><option value="sv_SE">sv_SE</option><option value="sw_KE">sw_KE</option><option value="ta_IN">ta_IN</option><option value="th_TH">th_TH</option><option value="tl_PH">tl_PH</option><option value="tr_TR">tr_TR</option><option value="uk_UA">uk_UA</option><option value="vi_VN">vi_VN</option><option value="zh_CN">zh_CN</option><option value="zh_HK">zh_HK</option><option value="zh_TW">zh_TW</option>
+        </select>
       
-      <div id="page_settings">
-  			<h2>Page Settings</h2>
-  			<label for="config_page_id">Page ID</label>
-  			<input type="text" id="config_page_id" value="123456"placeholder="The ID of the page in which the iframe is embedded"/>
+        <div id="page_settings">
+    			<h2>Page Settings</h2>
+    			<label for="config_page_id">Page ID</label>
+    			<input type="text" id="config_page_id" value="123456"placeholder="The ID of the page in which the iframe is embedded"/>
   			
-        <label for="config_page_liked">
-          <input type="checkbox" id="config_page_liked" value="true" /> User has liked this page?
-        </label>
+          <label for="config_page_liked">
+            <input type="checkbox" id="config_page_liked" value="true" /> User has liked this page?
+          </label>
   			
-        <label for="config_page_admin">
-          <input type="checkbox" id="config_page_admin" value="true" /> User is an admin of this page?
-        </label>
+          <label for="config_page_admin">
+            <input type="checkbox" id="config_page_admin" value="true" /> User is an admin of this page?
+          </label>
 
-      </div>
+        </div>
       
 			
-      <input type="submit" value="Post to Frame"/>
-		</form>
+        <input type="submit" value="Post to Frame"/>
+  		</form>
 		
-		<div id="credits">
-			Written by <a href="https://www.facebook.com/sicross" target="_blank">Simon Cross</a>. 
-			<a href="http://sicross.github.com/facebook-frame/" target="_blank">Hosted version</a> and 
-			<a href="https://github.com/sicross/facebook-frame" target="_blank">Code on Github</a>.
+  		<div id="credits">
+  			Written by <a href="https://www.facebook.com/sicross" target="_blank">Simon Cross</a>. 
+  			<a href="http://sicross.github.com/facebook-frame/" target="_blank">Hosted version</a> and 
+  			<a href="https://github.com/sicross/facebook-frame" target="_blank">Code on Github</a>.
+  		</div>
 		</div>
-		
 	</div>
 	
 </body>
@@ -206,7 +227,7 @@
       }
     
       // Ok, we have enough info, build the data to send
-      var signed_request = {
+      var data = {
         "algorithm": "HMAC-SHA256",
         "issued_at": Math.round(new Date().getTime() / 1000),
         "user": {
@@ -220,9 +241,9 @@
       
       // user_id provided? simulates a request from an auth'd user
       if (document.getElementById('config_user_id').value) {
-        signed_request.user_id =  document.getElementById('config_user_id').value;
-        signed_request.oauth_token = document.getElementById('config_user_token').value;
-        signed_request.expires = Math.round((new Date().getTime() / 1000)+7200);
+        data.user_id =  document.getElementById('config_user_id').value;
+        data.oauth_token = document.getElementById('config_user_token').value;
+        data.expires = Math.round((new Date().getTime() / 1000)+7200);
       }
       
       // page_id provided? simulates being loaded inside a Page Tab
@@ -235,7 +256,7 @@
               return false;
             }
             
-            signed_request.page = {
+            data.page = {
               "id": document.getElementById('config_page_id').value,
               "liked": document.getElementById('config_page_liked').checked,
               "admin": document.getElementById('config_page_admin').checked
@@ -244,16 +265,10 @@
       
             
   	  // build the payload and signature strings
-   	  var payload = encode64(JSON.stringify(signed_request));
-  	  var app_secret = document.getElementById('config_app_secret').value;
-	  
-  	  var sig = HMAC_SHA256_MAC(app_secret, payload);
-  	  //HMAC_SHA256_init(app_secret);
-  	  //HMAC_SHA256_write(payload);
-  	  //var sig = HMAC_SHA256_finalize();
-	  
-      var signed_request_string = sig + '.' + payload;
-      console.log(signed_request_string);
+   	  var payload = encode64(JSON.stringify(data));
+  	  var app_secret = document.getElementById('config_app_secret').value;      
+      var sig = rstr_hmac_sha256(app_secret, payload);
+      var signed_request_string = encode64(sig) + '.' + payload;
     
       // execute the request
       var post_url = document.getElementById('config_server_url').value + document.getElementById('config_canvas_path').value;
@@ -264,10 +279,13 @@
     })
     
     
+    /*==============================================================================*/ 
+    /* from http://ntt.cc/2008/01/19/base64-encoder-decoder-with-javascript.html */
+    
     var keyStr = "ABCDEFGHIJKLMNOP" +
                    "QRSTUVWXYZabcdef" +
                    "ghijklmnopqrstuv" +
-                   "wxyz0123456789+/" + // was "wxyz0123456789+/"
+                   "wxyz0123456789-_" + // was "wxyz0123456789+/"
                    "=";
     
     function encode64(input) {
@@ -305,362 +323,346 @@
          return output;
       }
 
-      function decode64(input) {
-         var output = "";
-         var chr1, chr2, chr3 = "";
-         var enc1, enc2, enc3, enc4 = "";
-         var i = 0;
+    /*==============================================================================*/  
+        
+    /*
+     * A JavaScript implementation of the Secure Hash Algorithm, SHA-256, as defined
+     * in FIPS 180-2
+     * Version 2.2 Copyright Angel Marin, Paul Johnston 2000 - 2009.
+     * Other contributors: Greg Holt, Andrew Kepert, Ydnar, Lostinet
+     * Distributed under the BSD License
+     * See http://pajhome.org.uk/crypt/md5 for details.
+     * Also http://anmar.eu.org/projects/jssha2/
+     */
 
-         // remove all characters that are not A-Z, a-z, 0-9, +, /, or =
-         var base64test = /[^A-Za-z0-9\+\/\=]/g;
-         if (base64test.exec(input)) {
-            alert("There were invalid base64 characters in the input text.\n" +
-                  "Valid base64 characters are A-Z, a-z, 0-9, '+', '/',and '='\n" +
-                  "Expect errors in decoding.");
-         }
-         input = input.replace(/[^A-Za-z0-9\+\/\=]/g, "");
+    /*
+     * Configurable variables. You may need to tweak these to be compatible with
+     * the server-side, but the defaults work in most cases.
+     */
+    var hexcase = 0;  /* hex output format. 0 - lowercase; 1 - uppercase        */
+    var b64pad  = ""; /* base-64 pad character. "=" for strict RFC compliance   */
 
-         do {
-            enc1 = keyStr.indexOf(input.charAt(i++));
-            enc2 = keyStr.indexOf(input.charAt(i++));
-            enc3 = keyStr.indexOf(input.charAt(i++));
-            enc4 = keyStr.indexOf(input.charAt(i++));
+    /*
+     * These are the functions you'll usually want to call
+     * They take string arguments and return either hex or base-64 encoded strings
+     */
+    function hex_sha256(s)    { return rstr2hex(rstr_sha256(str2rstr_utf8(s))); }
+    function b64_sha256(s)    { return rstr2b64(rstr_sha256(str2rstr_utf8(s))); }
+    function any_sha256(s, e) { return rstr2any(rstr_sha256(str2rstr_utf8(s)), e); }
+    function hex_hmac_sha256(k, d)
+      { return rstr2hex(rstr_hmac_sha256(str2rstr_utf8(k), str2rstr_utf8(d))); }
+    function b64_hmac_sha256(k, d)
+      { return rstr2b64(rstr_hmac_sha256(str2rstr_utf8(k), str2rstr_utf8(d))); }
+    function any_hmac_sha256(k, d, e)
+      { return rstr2any(rstr_hmac_sha256(str2rstr_utf8(k), str2rstr_utf8(d)), e); }
 
-            chr1 = (enc1 << 2) | (enc2 >> 4);
-            chr2 = ((enc2 & 15) << 4) | (enc3 >> 2);
-            chr3 = ((enc3 & 3) << 6) | enc4;
+    /*
+     * Perform a simple self-test to see if the VM is working
+     */
+    function sha256_vm_test()
+    {
+      return hex_sha256("abc").toLowerCase() ==
+                "ba7816bf8f01cfea414140de5dae2223b00361a396177a9cb410ff61f20015ad";
+    }
 
-            output = output + String.fromCharCode(chr1);
+    /*
+     * Calculate the sha256 of a raw string
+     */
+    function rstr_sha256(s)
+    {
+      return binb2rstr(binb_sha256(rstr2binb(s), s.length * 8));
+    }
 
-            if (enc3 != 64) {
-               output = output + String.fromCharCode(chr2);
-            }
-            if (enc4 != 64) {
-               output = output + String.fromCharCode(chr3);
-            }
+    /*
+     * Calculate the HMAC-sha256 of a key and some data (raw strings)
+     */
+    function rstr_hmac_sha256(key, data)
+    {
+      var bkey = rstr2binb(key);
+      if(bkey.length > 16) bkey = binb_sha256(bkey, key.length * 8);
 
-            chr1 = chr2 = chr3 = "";
-            enc1 = enc2 = enc3 = enc4 = "";
-
-         } while (i < input.length);
-
-         return unescape(output);
+      var ipad = Array(16), opad = Array(16);
+      for(var i = 0; i < 16; i++)
+      {
+        ipad[i] = bkey[i] ^ 0x36363636;
+        opad[i] = bkey[i] ^ 0x5C5C5C5C;
       }
-	  
-	  /*
-	   *  jssha256 version 0.1  -  Copyright 2006 B. Poettering
-	   *
-	   *  This program is free software; you can redistribute it and/or
-	   *  modify it under the terms of the GNU General Public License as
-	   *  published by the Free Software Foundation; either version 2 of the
-	   *  License, or (at your option) any later version.
-	   *
-	   *  This program is distributed in the hope that it will be useful,
-	   *  but WITHOUT ANY WARRANTY; without even the implied warranty of
-	   *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
-	   *  General Public License for more details.
-	   *
-	   *  You should have received a copy of the GNU General Public License
-	   *  along with this program; if not, write to the Free Software
-	   *  Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA
-	   *  02111-1307 USA
-	   */
 
-	  /*
-	   * http://point-at-infinity.org/jssha256/
-	   *
-	   * This is a JavaScript implementation of the SHA256 secure hash function
-	   * and the HMAC-SHA256 message authentication code (MAC).
-	   *
-	   * The routines' well-functioning has been verified with the test vectors 
-	   * given in FIPS-180-2, Appendix B and IETF RFC 4231. The HMAC algorithm 
-	   * conforms to IETF RFC 2104. 
-	   *
-	   * The following code example computes the hash value of the string "abc".
-	   *
-	   *    SHA256_init();
-	   *    SHA256_write("abc");
-	   *    digest = SHA256_finalize();  
-	   *    digest_hex = array_to_hex_string(digest);
-	   * 
-	   * Get the same result by calling the shortcut function SHA256_hash:
-	   * 
-	   *    digest_hex = SHA256_hash("abc");
-	   * 
-	   * In the following example the calculation of the HMAC of the string "abc" 
-	   * using the key "secret key" is shown:
-	   * 
-	   *    HMAC_SHA256_init("secret key");
-	   *    HMAC_SHA256_write("abc");
-	   *    mac = HMAC_SHA256_finalize();
-	   *    mac_hex = array_to_hex_string(mac);
-	   *
-	   * Again, the same can be done more conveniently:
-	   * 
-	   *    mac_hex = HMAC_SHA256_MAC("secret key", "abc");
-	   *
-	   * Note that the internal state of the hash function is held in global
-	   * variables. Therefore one hash value calculation has to be completed 
-	   * before the next is begun. The same applies the the HMAC routines.
-	   *
-	   * Report bugs to: jssha256 AT point-at-infinity.org
-	   *
-	   */
+      var hash = binb_sha256(ipad.concat(rstr2binb(data)), 512 + data.length * 8);
+      return binb2rstr(binb_sha256(opad.concat(hash), 512 + 256));
+    }
 
-	  /******************************************************************************/
+    /*
+     * Convert a raw string to a hex string
+     */
+    function rstr2hex(input)
+    {
+      try { hexcase } catch(e) { hexcase=0; }
+      var hex_tab = hexcase ? "0123456789ABCDEF" : "0123456789abcdef";
+      var output = "";
+      var x;
+      for(var i = 0; i < input.length; i++)
+      {
+        x = input.charCodeAt(i);
+        output += hex_tab.charAt((x >>> 4) & 0x0F)
+               +  hex_tab.charAt( x        & 0x0F);
+      }
+      return output;
+    }
 
-	  /* Two all purpose helper functions follow */
+    /*
+     * Convert a raw string to a base-64 string
+     */
+    function rstr2b64(input)
+    {
+      try { b64pad } catch(e) { b64pad=''; }
+      var tab = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/";
+      var output = "";
+      var len = input.length;
+      for(var i = 0; i < len; i += 3)
+      {
+        var triplet = (input.charCodeAt(i) << 16)
+                    | (i + 1 < len ? input.charCodeAt(i+1) << 8 : 0)
+                    | (i + 2 < len ? input.charCodeAt(i+2)      : 0);
+        for(var j = 0; j < 4; j++)
+        {
+          if(i * 8 + j * 6 > input.length * 8) output += b64pad;
+          else output += tab.charAt((triplet >>> 6*(3-j)) & 0x3F);
+        }
+      }
+      return output;
+    }
 
-	  /* string_to_array: convert a string to a character (byte) array */
+    /*
+     * Convert a raw string to an arbitrary string encoding
+     */
+    function rstr2any(input, encoding)
+    {
+      var divisor = encoding.length;
+      var remainders = Array();
+      var i, q, x, quotient;
 
-	  function string_to_array(str) {
-	    var len = str.length;
-	    var res = new Array(len);
-	    for(var i = 0; i < len; i++)
-	      res[i] = str.charCodeAt(i);
-	    return res;
-	  }
+      /* Convert to an array of 16-bit big-endian values, forming the dividend */
+      var dividend = Array(Math.ceil(input.length / 2));
+      for(i = 0; i < dividend.length; i++)
+      {
+        dividend[i] = (input.charCodeAt(i * 2) << 8) | input.charCodeAt(i * 2 + 1);
+      }
 
-	  /* array_to_hex_string: convert a byte array to a hexadecimal string */
+      /*
+       * Repeatedly perform a long division. The binary array forms the dividend,
+       * the length of the encoding is the divisor. Once computed, the quotient
+       * forms the dividend for the next step. We stop when the dividend is zero.
+       * All remainders are stored for later use.
+       */
+      while(dividend.length > 0)
+      {
+        quotient = Array();
+        x = 0;
+        for(i = 0; i < dividend.length; i++)
+        {
+          x = (x << 16) + dividend[i];
+          q = Math.floor(x / divisor);
+          x -= q * divisor;
+          if(quotient.length > 0 || q > 0)
+            quotient[quotient.length] = q;
+        }
+        remainders[remainders.length] = x;
+        dividend = quotient;
+      }
 
-	  function array_to_hex_string(ary) {
-	    var res = "";
-	    for(var i = 0; i < ary.length; i++)
-	      res += SHA256_hexchars[ary[i] >> 4] + SHA256_hexchars[ary[i] & 0x0f];
-	    return res;
-	  }
+      /* Convert the remainders to the output string */
+      var output = "";
+      for(i = remainders.length - 1; i >= 0; i--)
+        output += encoding.charAt(remainders[i]);
 
-	  /******************************************************************************/
+      /* Append leading zero equivalents */
+      var full_length = Math.ceil(input.length * 8 /
+                                        (Math.log(encoding.length) / Math.log(2)))
+      for(i = output.length; i < full_length; i++)
+        output = encoding[0] + output;
 
-	  /* The following are the SHA256 routines */
+      return output;
+    }
 
-	  /* 
-	     SHA256_init: initialize the internal state of the hash function. Call this
-	     function before calling the SHA256_write function.
-	  */
+    /*
+     * Encode a string as utf-8.
+     * For efficiency, this assumes the input is valid utf-16.
+     */
+    function str2rstr_utf8(input)
+    {
+      var output = "";
+      var i = -1;
+      var x, y;
 
-	  function SHA256_init() {
-	    SHA256_H = new Array(0x6a09e667, 0xbb67ae85, 0x3c6ef372, 0xa54ff53a, 
-	      0x510e527f, 0x9b05688c, 0x1f83d9ab, 0x5be0cd19);
-	    SHA256_buf = new Array();
-	    SHA256_len = 0;
-	  }
+      while(++i < input.length)
+      {
+        /* Decode utf-16 surrogate pairs */
+        x = input.charCodeAt(i);
+        y = i + 1 < input.length ? input.charCodeAt(i + 1) : 0;
+        if(0xD800 <= x && x <= 0xDBFF && 0xDC00 <= y && y <= 0xDFFF)
+        {
+          x = 0x10000 + ((x & 0x03FF) << 10) + (y & 0x03FF);
+          i++;
+        }
 
-	  /*
-	     SHA256_write: add a message fragment to the hash function's internal state. 
-	     'msg' may be given as string or as byte array and may have arbitrary length.
+        /* Encode output as utf-8 */
+        if(x <= 0x7F)
+          output += String.fromCharCode(x);
+        else if(x <= 0x7FF)
+          output += String.fromCharCode(0xC0 | ((x >>> 6 ) & 0x1F),
+                                        0x80 | ( x         & 0x3F));
+        else if(x <= 0xFFFF)
+          output += String.fromCharCode(0xE0 | ((x >>> 12) & 0x0F),
+                                        0x80 | ((x >>> 6 ) & 0x3F),
+                                        0x80 | ( x         & 0x3F));
+        else if(x <= 0x1FFFFF)
+          output += String.fromCharCode(0xF0 | ((x >>> 18) & 0x07),
+                                        0x80 | ((x >>> 12) & 0x3F),
+                                        0x80 | ((x >>> 6 ) & 0x3F),
+                                        0x80 | ( x         & 0x3F));
+      }
+      return output;
+    }
 
-	  */
+    /*
+     * Encode a string as utf-16
+     */
+    function str2rstr_utf16le(input)
+    {
+      var output = "";
+      for(var i = 0; i < input.length; i++)
+        output += String.fromCharCode( input.charCodeAt(i)        & 0xFF,
+                                      (input.charCodeAt(i) >>> 8) & 0xFF);
+      return output;
+    }
 
-	  function SHA256_write(msg) {
-	    if (typeof(msg) == "string")
-	      SHA256_buf = SHA256_buf.concat(string_to_array(msg));
-	    else
-	      SHA256_buf = SHA256_buf.concat(msg);
-	    for(var i = 0; i + 64 <= SHA256_buf.length; i += 64)
-	      SHA256_Hash_Byte_Block(SHA256_H, SHA256_buf.slice(i, i + 64));
-	    SHA256_buf = SHA256_buf.slice(i);
-	    SHA256_len += msg.length;
-	  }
+    function str2rstr_utf16be(input)
+    {
+      var output = "";
+      for(var i = 0; i < input.length; i++)
+        output += String.fromCharCode((input.charCodeAt(i) >>> 8) & 0xFF,
+                                       input.charCodeAt(i)        & 0xFF);
+      return output;
+    }
 
-	  /*
-	     SHA256_finalize: finalize the hash value calculation. Call this function
-	     after the last call to SHA256_write. An array of 32 bytes (= 256 bits) 
-	     is returned.
-	  */
+    /*
+     * Convert a raw string to an array of big-endian words
+     * Characters >255 have their high-byte silently ignored.
+     */
+    function rstr2binb(input)
+    {
+      var output = Array(input.length >> 2);
+      for(var i = 0; i < output.length; i++)
+        output[i] = 0;
+      for(var i = 0; i < input.length * 8; i += 8)
+        output[i>>5] |= (input.charCodeAt(i / 8) & 0xFF) << (24 - i % 32);
+      return output;
+    }
 
-	  function SHA256_finalize() {
-	    SHA256_buf[SHA256_buf.length] = 0x80;
+    /*
+     * Convert an array of big-endian words to a string
+     */
+    function binb2rstr(input)
+    {
+      var output = "";
+      for(var i = 0; i < input.length * 32; i += 8)
+        output += String.fromCharCode((input[i>>5] >>> (24 - i % 32)) & 0xFF);
+      return output;
+    }
 
-	    if (SHA256_buf.length > 64 - 8) {
-	      for(var i = SHA256_buf.length; i < 64; i++)
-	        SHA256_buf[i] = 0;
-	      SHA256_Hash_Byte_Block(SHA256_H, SHA256_buf);
-	      SHA256_buf.length = 0;
-	    }
+    /*
+     * Main sha256 function, with its support functions
+     */
+    function sha256_S (X, n) {return ( X >>> n ) | (X << (32 - n));}
+    function sha256_R (X, n) {return ( X >>> n );}
+    function sha256_Ch(x, y, z) {return ((x & y) ^ ((~x) & z));}
+    function sha256_Maj(x, y, z) {return ((x & y) ^ (x & z) ^ (y & z));}
+    function sha256_Sigma0256(x) {return (sha256_S(x, 2) ^ sha256_S(x, 13) ^ sha256_S(x, 22));}
+    function sha256_Sigma1256(x) {return (sha256_S(x, 6) ^ sha256_S(x, 11) ^ sha256_S(x, 25));}
+    function sha256_Gamma0256(x) {return (sha256_S(x, 7) ^ sha256_S(x, 18) ^ sha256_R(x, 3));}
+    function sha256_Gamma1256(x) {return (sha256_S(x, 17) ^ sha256_S(x, 19) ^ sha256_R(x, 10));}
+    function sha256_Sigma0512(x) {return (sha256_S(x, 28) ^ sha256_S(x, 34) ^ sha256_S(x, 39));}
+    function sha256_Sigma1512(x) {return (sha256_S(x, 14) ^ sha256_S(x, 18) ^ sha256_S(x, 41));}
+    function sha256_Gamma0512(x) {return (sha256_S(x, 1)  ^ sha256_S(x, 8) ^ sha256_R(x, 7));}
+    function sha256_Gamma1512(x) {return (sha256_S(x, 19) ^ sha256_S(x, 61) ^ sha256_R(x, 6));}
 
-	    for(var i = SHA256_buf.length; i < 64 - 5; i++)
-	      SHA256_buf[i] = 0;
-	    SHA256_buf[59] = (SHA256_len >>> 29) & 0xff;
-	    SHA256_buf[60] = (SHA256_len >>> 21) & 0xff;
-	    SHA256_buf[61] = (SHA256_len >>> 13) & 0xff;
-	    SHA256_buf[62] = (SHA256_len >>> 5) & 0xff;
-	    SHA256_buf[63] = (SHA256_len << 3) & 0xff;
-	    SHA256_Hash_Byte_Block(SHA256_H, SHA256_buf);
+    var sha256_K = new Array
+    (
+      1116352408, 1899447441, -1245643825, -373957723, 961987163, 1508970993,
+      -1841331548, -1424204075, -670586216, 310598401, 607225278, 1426881987,
+      1925078388, -2132889090, -1680079193, -1046744716, -459576895, -272742522,
+      264347078, 604807628, 770255983, 1249150122, 1555081692, 1996064986,
+      -1740746414, -1473132947, -1341970488, -1084653625, -958395405, -710438585,
+      113926993, 338241895, 666307205, 773529912, 1294757372, 1396182291,
+      1695183700, 1986661051, -2117940946, -1838011259, -1564481375, -1474664885,
+      -1035236496, -949202525, -778901479, -694614492, -200395387, 275423344,
+      430227734, 506948616, 659060556, 883997877, 958139571, 1322822218,
+      1537002063, 1747873779, 1955562222, 2024104815, -2067236844, -1933114872,
+      -1866530822, -1538233109, -1090935817, -965641998
+    );
 
-	    var res = new Array(32);
-	    for(var i = 0; i < 8; i++) {
-	      res[4 * i + 0] = SHA256_H[i] >>> 24;
-	      res[4 * i + 1] = (SHA256_H[i] >> 16) & 0xff;
-	      res[4 * i + 2] = (SHA256_H[i] >> 8) & 0xff;
-	      res[4 * i + 3] = SHA256_H[i] & 0xff;
-	    }
+    function binb_sha256(m, l)
+    {
+      var HASH = new Array(1779033703, -1150833019, 1013904242, -1521486534,
+                           1359893119, -1694144372, 528734635, 1541459225);
+      var W = new Array(64);
+      var a, b, c, d, e, f, g, h;
+      var i, j, T1, T2;
 
-	    delete SHA256_H;
-	    delete SHA256_buf;
-	    delete SHA256_len;
-	    return res;
-	  }
+      /* append padding */
+      m[l >> 5] |= 0x80 << (24 - l % 32);
+      m[((l + 64 >> 9) << 4) + 15] = l;
 
-	  /*
-	     SHA256_hash: calculate the hash value of the string or byte array 'msg' 
-	     and return it as hexadecimal string. This shortcut function may be more 
-	     convenient than calling SHA256_init, SHA256_write, SHA256_finalize 
-	     and array_to_hex_string explicitly.
-	  */
+      for(i = 0; i < m.length; i += 16)
+      {
+        a = HASH[0];
+        b = HASH[1];
+        c = HASH[2];
+        d = HASH[3];
+        e = HASH[4];
+        f = HASH[5];
+        g = HASH[6];
+        h = HASH[7];
 
-	  function SHA256_hash(msg) {
-	    var res;
-	    SHA256_init();
-	    SHA256_write(msg);
-	    res = SHA256_finalize();
-	    return array_to_hex_string(res);
-	  }
+        for(j = 0; j < 64; j++)
+        {
+          if (j < 16) W[j] = m[j + i];
+          else W[j] = safe_add(safe_add(safe_add(sha256_Gamma1256(W[j - 2]), W[j - 7]),
+                                                sha256_Gamma0256(W[j - 15])), W[j - 16]);
 
-	  /******************************************************************************/
+          T1 = safe_add(safe_add(safe_add(safe_add(h, sha256_Sigma1256(e)), sha256_Ch(e, f, g)),
+                                                              sha256_K[j]), W[j]);
+          T2 = safe_add(sha256_Sigma0256(a), sha256_Maj(a, b, c));
+          h = g;
+          g = f;
+          f = e;
+          e = safe_add(d, T1);
+          d = c;
+          c = b;
+          b = a;
+          a = safe_add(T1, T2);
+        }
 
-	  /* The following are the HMAC-SHA256 routines */
+        HASH[0] = safe_add(a, HASH[0]);
+        HASH[1] = safe_add(b, HASH[1]);
+        HASH[2] = safe_add(c, HASH[2]);
+        HASH[3] = safe_add(d, HASH[3]);
+        HASH[4] = safe_add(e, HASH[4]);
+        HASH[5] = safe_add(f, HASH[5]);
+        HASH[6] = safe_add(g, HASH[6]);
+        HASH[7] = safe_add(h, HASH[7]);
+      }
+      return HASH;
+    }
 
-	  /*
-	     HMAC_SHA256_init: initialize the MAC's internal state. The MAC key 'key'
-	     may be given as string or as byte array and may have arbitrary length.
-	  */
+    function safe_add (x, y)
+    {
+      var lsw = (x & 0xFFFF) + (y & 0xFFFF);
+      var msw = (x >> 16) + (y >> 16) + (lsw >> 16);
+      return (msw << 16) | (lsw & 0xFFFF);
+    }
 
-	  function HMAC_SHA256_init(key) {
-	    if (typeof(key) == "string")
-	      HMAC_SHA256_key = string_to_array(key);
-	    else
-	      HMAC_SHA256_key = new Array().concat(key);
-
-	    if (HMAC_SHA256_key.length > 64) {
-	      SHA256_init();
-	      SHA256_write(HMAC_SHA256_key);
-	      HMAC_SHA256_key = SHA256_finalize();
-	    }
-
-	    for(var i = HMAC_SHA256_key.length; i < 64; i++)
-	      HMAC_SHA256_key[i] = 0;
-	    for(var i = 0; i < 64; i++)
-	      HMAC_SHA256_key[i] ^=  0x36;
-	    SHA256_init();
-	    SHA256_write(HMAC_SHA256_key);
-	  }
-
-	  /*
-	     HMAC_SHA256_write: process a message fragment. 'msg' may be given as 
-	     string or as byte array and may have arbitrary length.
-	  */
-
-	  function HMAC_SHA256_write(msg) {
-	    SHA256_write(msg);
-	  }
-
-	  /*
-	     HMAC_SHA256_finalize: finalize the HMAC calculation. An array of 32 bytes
-	     (= 256 bits) is returned.
-	  */
-
-	  function HMAC_SHA256_finalize() {
-	    var md = SHA256_finalize();
-	    for(var i = 0; i < 64; i++)
-	      HMAC_SHA256_key[i] ^= 0x36 ^ 0x5c;
-	    SHA256_init();
-	    SHA256_write(HMAC_SHA256_key);
-	    SHA256_write(md);
-	    for(var i = 0; i < 64; i++)
-	      HMAC_SHA256_key[i] = 0;
-	    delete HMAC_SHA256_key;
-	    return SHA256_finalize();
-	  }
-
-	  /*
-	     HMAC_SHA256_MAC: calculate the HMAC value of message 'msg' under key 'key'
-	     (both may be of type string or byte array); return the MAC as hexadecimal 
-	     string. This shortcut function may be more convenient than calling 
-	     HMAC_SHA256_init, HMAC_SHA256_write, HMAC_SHA256_finalize and 
-	     array_to_hex_string explicitly.
-	  */
-
-	  function HMAC_SHA256_MAC(key, msg) {
-	    var res;
-	    HMAC_SHA256_init(key);
-	    HMAC_SHA256_write(msg);
-	    res = HMAC_SHA256_finalize();
-	    return array_to_hex_string(res);
-	  }
-
-	  /******************************************************************************/
-
-	  /* The following lookup tables and functions are for internal use only! */
-
-	  SHA256_hexchars = new Array('0', '1', '2', '3', '4', '5', '6', '7', '8', '9', 
-	    'a', 'b', 'c', 'd', 'e', 'f');
-
-	  SHA256_K = new Array(
-	    0x428a2f98, 0x71374491, 0xb5c0fbcf, 0xe9b5dba5, 0x3956c25b, 0x59f111f1, 
-	    0x923f82a4, 0xab1c5ed5, 0xd807aa98, 0x12835b01, 0x243185be, 0x550c7dc3, 
-	    0x72be5d74, 0x80deb1fe, 0x9bdc06a7, 0xc19bf174, 0xe49b69c1, 0xefbe4786, 
-	    0x0fc19dc6, 0x240ca1cc, 0x2de92c6f, 0x4a7484aa, 0x5cb0a9dc, 0x76f988da, 
-	    0x983e5152, 0xa831c66d, 0xb00327c8, 0xbf597fc7, 0xc6e00bf3, 0xd5a79147, 
-	    0x06ca6351, 0x14292967, 0x27b70a85, 0x2e1b2138, 0x4d2c6dfc, 0x53380d13, 
-	    0x650a7354, 0x766a0abb, 0x81c2c92e, 0x92722c85, 0xa2bfe8a1, 0xa81a664b, 
-	    0xc24b8b70, 0xc76c51a3, 0xd192e819, 0xd6990624, 0xf40e3585, 0x106aa070, 
-	    0x19a4c116, 0x1e376c08, 0x2748774c, 0x34b0bcb5, 0x391c0cb3, 0x4ed8aa4a, 
-	    0x5b9cca4f, 0x682e6ff3, 0x748f82ee, 0x78a5636f, 0x84c87814, 0x8cc70208, 
-	    0x90befffa, 0xa4506ceb, 0xbef9a3f7, 0xc67178f2 
-	  );
-
-	  function SHA256_sigma0(x) {
-	    return ((x >>> 7) | (x << 25)) ^ ((x >>> 18) | (x << 14)) ^ (x >>> 3);
-	  }
-
-	  function SHA256_sigma1(x) {
-	    return ((x >>> 17) | (x << 15)) ^ ((x >>> 19) | (x << 13)) ^ (x >>> 10);
-	  }
-
-	  function SHA256_Sigma0(x) {
-	    return ((x >>> 2) | (x << 30)) ^ ((x >>> 13) | (x << 19)) ^ 
-	      ((x >>> 22) | (x << 10));
-	  }
-
-	  function SHA256_Sigma1(x) {
-	    return ((x >>> 6) | (x << 26)) ^ ((x >>> 11) | (x << 21)) ^ 
-	      ((x >>> 25) | (x << 7));
-	  }
-
-	  function SHA256_Ch(x, y, z) {
-	    return z ^ (x & (y ^ z));
-	  }
-
-	  function SHA256_Maj(x, y, z) {
-	    return (x & y) ^ (z & (x ^ y));
-	  }
-
-	  function SHA256_Hash_Word_Block(H, W) {
-	    for(var i = 16; i < 64; i++)
-	      W[i] = (SHA256_sigma1(W[i - 2]) +  W[i - 7] + 
-	        SHA256_sigma0(W[i - 15]) + W[i - 16]) & 0xffffffff;
-	    var state = new Array().concat(H);
-	    for(var i = 0; i < 64; i++) {
-	      var T1 = state[7] + SHA256_Sigma1(state[4]) + 
-	        SHA256_Ch(state[4], state[5], state[6]) + SHA256_K[i] + W[i];
-	      var T2 = SHA256_Sigma0(state[0]) + SHA256_Maj(state[0], state[1], state[2]);
-	      state.pop();
-	      state.unshift((T1 + T2) & 0xffffffff);
-	      state[4] = (state[4] + T1) & 0xffffffff;
-	    }
-	    for(var i = 0; i < 8; i++)
-	      H[i] = (H[i] + state[i]) & 0xffffffff;
-	  }
-
-	  function SHA256_Hash_Byte_Block(H, w) {
-	    var W = new Array(16);
-	    for(var i = 0; i < 16; i++)
-	      W[i] = w[4 * i + 0] << 24 | w[4 * i + 1] << 16 | 
-	        w[4 * i + 2] << 8 | w[4 * i + 3];
-	    SHA256_Hash_Word_Block(H, W);
-	  }
-  
   </script>
 
 </html>
