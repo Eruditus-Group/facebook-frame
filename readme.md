@@ -1,8 +1,8 @@
-* Facebook Frame
+# Facebook Frame
 
-[Facebook Frame](https://sicross.github.com/facebook-frame/) is a self-contained development harness for building and testing [Facebook Applications](https://developers.facebook.com) which work inside Facebook - both in [Canvas](https://developers.facebook.com/docs/guides/canvas/) and in [Page Tabs](https://developers.facebook.com/docs/appsonfacebook/pagetabs/).
+[Facebook Frame](http://sicross.github.com/facebook-frame/) is a self-contained development harness for building and testing [Facebook Applications](https://developers.facebook.com) which work inside Facebook - both in [Canvas](https://developers.facebook.com/docs/guides/canvas/) and in [Page Tabs](https://developers.facebook.com/docs/appsonfacebook/pagetabs/).
 
-Facebook Frame speeds up development by simulating the Facebook iframe environment, including the posting of a `signed_request` parameter. You can configure the contents of the `signed_request`, which makes debugging, 
+Facebook Frame speeds up development by simulating the Facebook iframe environment, including the posting of a `signed_request` parameter. You can configure the contents of the `signed_request`, which makes building, testing and debugging your app really really really simple. Oh, and fast: you can reload your app with new variables in a single click.
 
 Facebook Frame is a single document, and is written in Javascript and so can be copied and used entierly offline. This means you can keep building your awesome social apps on planes, in tunnels or anywhere the internets do not reach.
 
