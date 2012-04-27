@@ -219,7 +219,7 @@
         <div id="page_settings">
     			<h2>Page Settings</h2>
     			<label for="config_page_id">Page ID</label>
-    			<input type="text" id="config_page_id" value="123456" placeholder="The ID of the page in which the iframe is embedded"/>
+    			<input type="text" id="config_page_id" value="" placeholder="The ID of the page in which the iframe is embedded"/>
   			
     			<label for="config_app_data">App Data</label>
     			<input type="text" id="config_app_data" value="" placeholder="contents of the app_data param if present in the Page URL"/>
@@ -271,6 +271,7 @@
       document.body.className = e.target.value;
     });
     
+	// enable/disable form fields dependent upon the presence of a user ID value
     document.getElementById('config_user_id').addEventListener('blur', function(e,v){
       if (e.target.value){
         // user ID is set, enable user-dependent fields
@@ -292,11 +293,11 @@
     
       // onSubmit checks
       if (!document.getElementById('config_app_secret').value) {
-        alert('Please provide an App Secret. This is needed to securely sign the request.');
+        alert('Please provide an App Secret. \n\nThis is needed to sign the request which your app should use to ensure the request came from Facebook. \n\nFailure to do this leaves your application open to attack from malicious developers.');
         return false;
       }
       if (!document.getElementById('config_server_url').value) {
-        alert('Please provide an Server URL. This is needed so we know which URL to POST to.');
+        alert('Please provide an Server URL. \n\nThis is needed so we know which URL to load inside the Frame.');
         return false;
       }
     
@@ -326,7 +327,7 @@
             
             // must have a page ID in this state
             if (!document.getElementById('config_page_id').value){
-              alert('Please provide a Page ID');
+              alert('Please provide a Page ID. \n\nYou\'ve set Facebook Frame to emulate your app being loaded inside a Page tab. In this mode, your app should expect the ID of the page in which it has been loaded to be send in the signed_request object.');
               return false;
             }
             
