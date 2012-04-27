@@ -8,21 +8,22 @@
       margin:0px;
       padding:0px;
       font-size:12px;
+	  font-family:"Trebuchet MS", Helvetica, sans-serif;
     }
     
     body {
-      background:grey;
+      background:gray;
       min-width: 1006px;
     }
 	
-		div#header {
+	div#header {
       border-bottom: 1px solid #133783;
-			background: #3B5998;
+	  background: #3B5998;
       position:relative;
       height:37px;
       z-index:200;
       min-width: 1006px;
-		}
+	}
     
     div#header h1 {
       color:white;
@@ -64,13 +65,12 @@
 		
     div#right-col-wrapper{
       position:absolute;
-
+	  background-color:rgb(234, 236, 241);
       overflow-y: auto;
       width:224px;
       height:100%;
       right:0px;
       top:0px;
-      background:white;
       border-left:1px solid #B3B3B3;
       z-index:1;
     }
@@ -81,9 +81,15 @@
       z-index:1;  
     }
 	
+	div#right-col h2 {
+		font-size:15px;
+		margin-bottom:5px;
+		margin-top:10px;
+	}
+	
 	form input, form label, form select {
 		display:block;
-    outline:0;
+    	outline:0;
 	}
 	
 	form input, form select {
@@ -97,19 +103,40 @@
 	form input[type="checkbox"] {
 		display:inline;
 	}
+	
+	form#config-form label {
+		
+	}
+	
+	select#embed_mode {
+		width:93%;
+		font-size:2em;
+	}
+  	
+	form #post_to_frame {
+		width:90%;
+		font-size:2em;
+	}
   
-  #config_canvas_path_prefix {
+  form #config_canvas_path_prefix {
     margin-bottom: 0;
     padding-bottom: 0;
     border-bottom: 0;
-    letter-spacing: -1.5px;;
+    letter-spacing: -1.5px;
   }
 
-  #config_canvas_path {
+  form #config_canvas_path {
     margin-top:0;
     padding-top:0;
     border-top:0;
-    
+  }
+
+  
+
+  #credits {
+	  border-top: 1px solid rgb(174, 189, 228);
+	  padding-top:10px;
+	  margin-top:20px;
   }
 
 	</style>
@@ -167,7 +194,7 @@
 			
   			<label for="config_canvas_path">Canvas Path</label>
   			<input type="text" id="config_canvas_path_prefix" readonly value="...facebook.com/yournamespace/" />
-  			<input type="text" id="config_canvas_path" value="debug_signed_request" placeholder="" />
+  			<input type="text" id="config_canvas_path" value="" placeholder="foo/bar?alice=bob" />
       
         <h2>User Settings</h2>
 			
@@ -206,13 +233,13 @@
         </div>
       
 			
-        <input type="submit" value="Post to Frame"/>
+        <input type="submit" value="Post to Frame" id="post_to_frame"/>
   		</form>
 		
   		<div id="credits">
-  			Written by <a href="https://www.facebook.com/sicross" target="_blank">Simon Cross</a>. 
-  			<a href="http://sicross.github.com/facebook-frame/" target="_blank">Hosted version</a> and 
-  			<a href="https://github.com/sicross/facebook-frame" target="_blank">Code on Github</a>.
+  			Started by <a href="https://www.facebook.com/sicross" target="_blank">Simon Cross</a>. 
+  			Try the latest <a href="http://sicross.github.com/facebook-frame/" target="_blank">hosted version</a> or contribute to   
+  			<a href="https://github.com/sicross/facebook-frame" target="_blank">this project on Github</a>.
   		</div>
 		</div>
 	</div>
@@ -222,8 +249,21 @@
 
 <!-- BEGIN JAVASCRIPT -->
   <script>
-    
-    var Arbiter = {};
+  
+  function resizeFrame(){
+	  var h = document.documentElement.clientHeight;
+	  var header = document.getElementById('header').offsetHeight;
+	  var frame = document.getElementById('canvas-wrapper');
+	  frame.style.height = h-header+'px';
+	  
+  };
+  resizeFrame(); // call on load
+  window.onresize = function(e){
+	  // and whenever the window is resized
+	  resizeFrame();
+  }
+
+  
   
     document.getElementById('embed_mode').addEventListener('change', function(e){
       document.body.className = e.target.value;
