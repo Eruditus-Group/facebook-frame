@@ -4,142 +4,166 @@
 	<title>Facebook Frame</title>
 	
   <style>
-    body,h1,h2,p,div,form,ul,li {
-      margin:0px;
-      padding:0px;
+    body,h1,h2,p,div,form,ul,li
+    {
+      font-family:"Trebuchet MS", Helvetica, sans-serif;
       font-size:12px;
-	  font-family:"Trebuchet MS", Helvetica, sans-serif;
+      margin:0;
+      padding:0;
     }
-    
-    body {
+
+    body
+    {
       background:gray;
-      min-width: 1006px;
+      min-width:1006px;
     }
-	
-	div#header {
-      border-bottom: 1px solid #133783;
-	  background: #3B5998;
-      position:relative;
+
+    div#header
+    {
+      background:#3B5998;
+      border-bottom:1px solid #133783;
       height:37px;
+      min-width:1006px;
+      position:relative;
       z-index:200;
-      min-width: 1006px;
-	}
-    
-    div#header h1 {
-      color:white;
-      font-size:2em;
-      margin-left:10px;
-      line-height:38px;
     }
-    
-    div#canvas-outer {
+
+    div#header h1
+    {
+      color:#FFF;
+      font-size:2em;
+      line-height:38px;
+      margin-left:10px;
+    }
+
+    div#header h1 span
+    {
+      font-size:12px;
+      position:relative;
+      top:-2px;
+    }
+
+    div#canvas-outer
+    {
       margin-right:224px;
     }
-    
-    div#canvas-wrapper {
+
+    div#canvas-wrapper
+    {
+      background:#FFF;
+      height:250px;
       margin-left:auto;
       margin-right:auto;
-      height:250px;
-      background:white;
     }
-    
-    body.canvas_fixed div#canvas-wrapper {
+
+    body.canvas_fixed div#canvas-wrapper
+    {
       width:760px;
-    } 
-    body.page_narrow div#canvas-wrapper {
+    }
+
+    body.page_narrow div#canvas-wrapper
+    {
       width:520px;
     }
-    body.page_wide div#canvas-wrapper {
+
+    body.page_wide div#canvas-wrapper
+    {
       width:850px;
     }
-    
-    
-    /* show/hide page settings in right col depending on embed mode */
-    div#page_settings {
-      display:none
+
+    div#page_settings
+    {
+      display:none;
     }
-    body.page_wide div#page_settings,
-    body.page_narrow div#page_settings {
+
+    body.page_wide div#page_settings,body.page_narrow div#page_settings
+    {
       display:block;
     }
-		
-    div#right-col-wrapper{
-      position:absolute;
-	  background-color:rgb(234, 236, 241);
-      overflow-y: auto;
-      width:224px;
-      height:100%;
-      right:0px;
-      top:0px;
+
+    div#right-col-wrapper
+    {
+      background-color:#eaecf1;
       border-left:1px solid #B3B3B3;
+      height:100%;
+      overflow-y:auto;
+      position:absolute;
+      right:0;
+      top:0;
+      width:224px;
       z-index:1;
     }
-    
-	  div#right-col {
+
+    div#right-col
+    {
+      margin-top:38px;
       padding:10px;
-      margin-top:38px;   
-      z-index:1;  
+      z-index:1;
     }
-	
-	div#right-col h2 {
-		font-size:17px;
-		margin-bottom:10px;
-		margin-top:20px;
-	}
-	
-	form input, form label, form select {
-		display:block;
-    	outline:0;
-	}
-	
-	form input, form select {
-		margin-bottom:15px;
-	}
 
-	form input[type="text"] {
-		width: 90%;
-	}
-  
-	form input[type="checkbox"] {
-		display:inline;
-	}
-	
-	form#config-form label {
-		
-	}
-	
-	select#embed_mode {
-		width:93%;
-		font-size:2em;
-	}
-  	
-	form #post_to_frame {
-		width:90%;
-		font-size:2em;
-		margin-top:40px;
-	}
-  
-  form #config_canvas_path_prefix {
-    margin-bottom: 0;
-    padding-bottom: 0;
-    border-bottom: 0;
-    letter-spacing: -1.5px;
-  }
+    div#right-col h2
+    {
+      font-size:17px;
+      margin-bottom:10px;
+      margin-top:20px;
+    }
 
-  form #config_canvas_path {
-    margin-top:0;
-    padding-top:0;
-    border-top:0;
-  }
+    form input,form label,form select
+    {
+      display:block;
+      outline:0;
+    }
 
-  
+    form input,form select
+    {
+      margin-bottom:15px;
+    }
 
-  #credits {
-	  border-top: 1px solid rgb(174, 189, 228);
-	  padding-top:20px;
-	  margin-top:40px;
-	  font-size:11px;
-  }
+    form input[type="text"]
+    {
+      width:90%;
+    }
+
+    form input[type="checkbox"]
+    {
+      display:inline;
+    }
+
+    select#embed_mode
+    {
+      font-size:2em;
+      width:93%;
+    }
+
+    form #post_to_frame
+    {
+      font-size:2em;
+      margin-top:40px;
+      width:90%;
+    }
+
+    form #config_canvas_path_prefix
+    {
+      border-bottom:0;
+      letter-spacing:-1.5px;
+      margin-bottom:0;
+      padding-bottom:0;
+    }
+
+    form #config_canvas_path
+    {
+      border-top:0;
+      margin-top:0;
+      padding-top:0;
+    }
+
+    #credits
+    {
+      border-top:1px solid #aebde4;
+      font-size:11px;
+      margin-top:40px;
+      padding-top:20px;
+    }
 
 	</style>
   
@@ -159,7 +183,7 @@
 
   
 	<div id="header">
-		<h1>Facebook Frame</h1>
+		<h1>Facebook Frame <span>- making Facebook Canvas app development a breeze.</span></h1>
 	</div>
   
 	<div id="canvas-outer">
