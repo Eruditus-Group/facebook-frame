@@ -43,7 +43,7 @@
     }
     
     body.canvas_fixed div#canvas-wrapper {
-      width:720px;
+      width:760px;
     } 
     body.page_narrow div#canvas-wrapper {
       width:520px;
@@ -64,25 +64,26 @@
 		
     div#right-col-wrapper{
       position:absolute;
-      margin-left:-1px;
+
       overflow-y: auto;
       width:224px;
       height:100%;
       right:0px;
       top:0px;
+      background:white;
+      border-left:1px solid #B3B3B3;
       z-index:1;
     }
     
 	  div#right-col {
       padding:10px;
-      border-left:1px solid #B3B3B3;
-      margin-top:38px;
-      background:white;    
+      margin-top:38px;   
       z-index:1;  
     }
 	
 	form input, form label, form select {
-		display:block
+		display:block;
+    outline:0;
 	}
 	
 	form input, form select {
@@ -97,11 +98,37 @@
 		display:inline;
 	}
   
+  #config_canvas_path_prefix {
+    margin-bottom: 0;
+    padding-bottom: 0;
+    border-bottom: 0;
+    letter-spacing: -1.5px;;
+  }
+
+  #config_canvas_path {
+    margin-top:0;
+    padding-top:0;
+    border-top:0;
+    
+  }
 
 	</style>
   
 </head>
 <body class="canvas_fluid">
+  
+  <div id="fb-root"></div>  
+  <script>
+  
+    var FB = {
+      "XD": {
+        
+      }
+    }
+  
+  </script>
+
+  
 	<div id="header">
 		<h1>Facebook Frame</h1>
 	</div>
@@ -123,7 +150,7 @@
 		
   		<select id="embed_mode">
   			<option selected value="canvas_fluid">Canvas Fluid Width</option>
-        <option value="canvas_fixed">Canvas 780px</option>
+        <option value="canvas_fixed">Canvas 760px</option>
   			<option value="page_narrow">Page Tab 520px</option>
   			<option value="page_wide">Page Tab 850px</option>
   		</select>
@@ -139,7 +166,7 @@
   			<input type="text" id="config_server_url" value="http://localhost:3000/"placeholder="The base URL to which POST requests should be sent"/>
 			
   			<label for="config_canvas_path">Canvas Path</label>
-  			<input type="text" id="config_canvas_path_prefix" value="https://apps.facebook.com/yournamespace/" />
+  			<input type="text" id="config_canvas_path_prefix" readonly value="...facebook.com/yournamespace/" />
   			<input type="text" id="config_canvas_path" value="debug_signed_request" placeholder="" />
       
         <h2>User Settings</h2>
@@ -163,8 +190,11 @@
         <div id="page_settings">
     			<h2>Page Settings</h2>
     			<label for="config_page_id">Page ID</label>
-    			<input type="text" id="config_page_id" value="123456"placeholder="The ID of the page in which the iframe is embedded"/>
+    			<input type="text" id="config_page_id" value="123456" placeholder="The ID of the page in which the iframe is embedded"/>
   			
+    			<label for="config_app_data">App Data</label>
+    			<input type="text" id="config_app_data" value="" placeholder="contents of the app_data param if present in the Page URL"/>
+        
           <label for="config_page_liked">
             <input type="checkbox" id="config_page_liked" value="true" /> User has liked this page?
           </label>
@@ -192,6 +222,8 @@
 
 <!-- BEGIN JAVASCRIPT -->
   <script>
+    
+    var Arbiter = {};
   
     document.getElementById('embed_mode').addEventListener('change', function(e){
       document.body.className = e.target.value;
@@ -260,6 +292,10 @@
               "id": document.getElementById('config_page_id').value,
               "liked": document.getElementById('config_page_liked').checked,
               "admin": document.getElementById('config_page_admin').checked
+            }
+            
+            if(document.getElementById('config_app_data').value) {
+              data.app_data = document.getElementById('config_app_data').value;
             }
       }
       
